@@ -1,10 +1,10 @@
-# SasaPay Webhook Handler
+# SasaPay Sdk
 
-This package provides an easy-to-use webhook handler for integrating with the SasaPay API. It supports signature verification and event processing in a framework-agnostic way, making it flexible for various environments.
+This package provides an easy-to-use Sdk for integrating with the SasaPay API. It supports signature verification and event processing in a framework-agnostic way, making it flexible for various environments.
 
 ## Features
 
-- Framework-agnostic webhook handler
+- Framework-agnostic Sdk
 - Signature verification for security
 - Callback for event handling
 - Easy integration into any HTTP server
@@ -14,10 +14,10 @@ This package provides an easy-to-use webhook handler for integrating with the Sa
 You can install this package via npm:
 
 ```bash
-npm install sasapay-webhook-handler
+npm install sasapay-sdk
 
 ## Usage
-import WebhookHandler from "sasapay-webhook-handler";
+import WebhookHandler from "sasapay-sdk";
 import crypto from "crypto";
 
 // Define your secret key and event handling logic
@@ -64,9 +64,9 @@ To make your package discoverable, add relevant keywords in `package.json`:
 
 ```json
 {
-  "name": "sasapay-webhook-handler",
+  "name": "sasapay-sdk",
   "version": "1.0.0",
-  "description": "A framework-agnostic webhook handler for SasaPay API.",
+  "description": "A framework-agnostic Sdk for SasaPay API.",
   "main": "src/index.ts",
   "scripts": {
     "test": "jest"
@@ -78,7 +78,7 @@ To make your package discoverable, add relevant keywords in `package.json`:
     "signature-verification",
     "event-processing"
   ],
-  "author": "Your Name",
+  "author": "Noel Osiro",
   "license": "MIT",
   "dependencies": {
     "crypto": "^1.0.1"
