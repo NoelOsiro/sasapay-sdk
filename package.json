@@ -1,17 +1,27 @@
 {
   "name": "sasapay-sdk",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A TypeScript SDK for interacting with Sasapay APIs.",
+  "main": "dist/index.js",
   "scripts": {
-  "build": "tsc",
-  "lint": "eslint src/**/*.ts",
-  "test": "jest",
-  "start": "node dist/index.js"
-},
-  "keywords": [],
-  "author": "",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "test": "jest",
+    "start": "node dist/index.js",
+    "prestart": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/sasapay-sdk.git"
+  },
+  "keywords": ["sasapay", "sdk", "typescript"],
+  "author": "Your Name",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/your-repo/sasapay-sdk/issues"
+  },
+  "homepage": "https://github.com/your-repo/sasapay-sdk#readme",
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "axios": "^1.7.9",
@@ -21,5 +31,9 @@
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0.0",
+    "node": ">=16.0.0"
   }
 }

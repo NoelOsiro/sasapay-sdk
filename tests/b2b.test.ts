@@ -1,6 +1,6 @@
 import B2BService from "../src/services/b2b";
 import AuthService from "../src/services/auth";
-import { CONFIG } from "../config";
+import { CONFIG } from "../src/config";
 
 jest.mock("axios"); // Mock Axios for testing API requests
 

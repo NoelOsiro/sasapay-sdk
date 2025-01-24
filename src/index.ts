@@ -1,7 +1,7 @@
-import AuthService from "./src/services/auth";
-import C2BService from "./src/services/c2b";
-import B2CService from "./src/services/b2c";
-import B2BService from "./src/services/b2b";
+import AuthService from "./services/auth";
+import C2BService from "./services/c2b";
+import B2CService from "./services/b2c";
+import B2BService from "./services/b2b";
 import { CONFIG } from "./config";
 
 const authService = new AuthService({
