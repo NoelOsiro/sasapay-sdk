@@ -1,14 +1,25 @@
 import AuthService from "./auth";
 interface C2BPaymentRequest {
-    phoneNumber: string;
-    amount: number;
-    accountReference: string;
-    callbackUrl: string;
+    MerchantCode: string;
+    NetworkCode: string;
+    TransactionFee: number;
+    Currency: string;
+    Amount: number;
+    CallBackURL: string;
+    PhoneNumber: string;
+    TransactionDesc: string;
+    AccountReference: string;
 }
 interface C2BPaymentResponse {
-    transactionId: string;
-    status: string;
-    message: string;
+    status: boolean;
+    detail: string;
+    PaymentGateway: string;
+    MerchantRequestID: string;
+    CheckoutRequestID: string;
+    TransactionReference: string;
+    ResponseCode: string;
+    ResponseDescription: string;
+    CustomerMessage: string;
 }
 interface PaymentStatusResponse {
     transactionId: string;

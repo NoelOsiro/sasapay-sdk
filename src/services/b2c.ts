@@ -1,14 +1,14 @@
 import axios from "axios";
 import AuthService from "./auth";
 
-interface B2CPayoutRequest {
+export interface B2CPayoutRequest {
   recipientPhoneNumber: string;
   amount: number;
   reason: string;
   callbackUrl: string;
 }
 
-interface B2CPayoutResponse {
+export interface B2CPayoutResponse {
   transactionId: string;
   status: string;
   message: string;

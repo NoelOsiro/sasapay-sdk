@@ -23,14 +23,21 @@ class C2BService {
      */
     initiatePayment(request) {
         return __awaiter(this, void 0, void 0, function* () {
-            const token = yield this.authService.getToken();
-            const response = yield axios_1.default.post(`${this.baseUrl}/c2b/payment`, request, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            });
-            return response.data;
+            try {
+                const token = yield this.authService.getToken();
+                console.log("Fetched Token:", token);
+                const response = yield axios_1.default.post(`${this.baseUrl}/payments/request-payment/`, request, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
+                return response.data;
+            }
+            catch (error) {
+                console.error("Error during payment initiation:", error);
+                throw error; // Rethrow to let the caller handle it
+            }
         });
     }
     /**

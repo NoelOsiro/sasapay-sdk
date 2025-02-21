@@ -13,9 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-repo/sasapay-sdk.git"
+    "url": "git+https://github.com/NoelOsiro/sasapay-sdk.git"
   },
-  "keywords": ["sasapay", "sdk", "typescript"],
+  "keywords": [
+    "sasapay",
+    "sdk",
+    "typescript"
+  ],
   "author": "Your Name",
   "license": "ISC",
   "bugs": {
