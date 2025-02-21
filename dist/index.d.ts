@@ -17,5 +17,4 @@ declare class SasaPay {
     processB2C(params: B2CPayoutRequest): Promise<import("./services/b2c").B2CPayoutResponse>;
     processB2B(params: B2BPaymentRequest): Promise<import("./services/b2b").B2BPaymentResponse>;
 }
-declare const sasaPay: SasaPay;
-export default sasaPay;
+export default SasaPay;

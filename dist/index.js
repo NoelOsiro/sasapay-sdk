@@ -67,9 +67,4 @@ class SasaPay {
         });
     }
 }
-const sasaPay = new SasaPay({
-    clientId: process.env.CLIENT_ID, // or pass directly
-    clientSecret: process.env.CLIENT_SECRET, // or pass directly
-    environment: process.env.ENVIRONMENT, // or pass directly
-});
-exports.default = sasaPay;
+exports.default = SasaPay;
