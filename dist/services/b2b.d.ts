@@ -1,11 +1,11 @@
 import AuthService from "./auth";
-interface B2BPaymentRequest {
+export interface B2BPaymentRequest {
     recipientBusinessId: string;
     amount: number;
     paymentReason: string;
     callbackUrl: string;
 }
-interface B2BPaymentResponse {
+export interface B2BPaymentResponse {
     transactionId: string;
     status: string;
     message: string;

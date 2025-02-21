@@ -8,11 +8,13 @@ import { B2CPayoutRequest } from "./services/b2c";
 import { B2BPaymentRequest } from "./services/b2b";
 
 interface SasaPayConfig {
-  clientId: string;
-  clientSecret: string;
-  environment?: "sandbox" | "production";
+  clientId?: string;
+  clientSecret?: string;
+  environment?: string;
 }
-
+function isValidEnvironment(env: string | undefined): env is "sandbox" | "production" {
+  return env === "sandbox" || env === "production";
+}
 class SasaPay {
   private authService: AuthService;
   private c2bService: C2BService;
@@ -20,13 +22,22 @@ class SasaPay {
   private b2bService: B2BService;
 
   constructor(config: SasaPayConfig) {
-    const baseUrl = config.environment === "production" 
+    const clientId = config.clientId || process.env.CLIENT_ID || CONFIG.clientId;
+    const clientSecret = config.clientSecret || process.env.CLIENT_SECRET || CONFIG.clientSecret;
+    let environment = config.environment || process.env.ENVIRONMENT || "sandbox"; // Default to "sandbox"
+
+    // Validate the environment value
+    // Validate the environment value
+    if (!isValidEnvironment(environment)) {
+      throw new Error(`Invalid environment value: ${environment}. Expected "sandbox" or "production".`);
+  }
+    const baseUrl = environment === "production"
       ? "https://api.sasapay.app/api/v1"
       : "https://sandbox.sasapay.app/api/v1";
 
     this.authService = new AuthService({
-      clientId: config.clientId,
-      clientSecret: config.clientSecret,
+      clientId: clientId,
+      clientSecret: clientSecret,
       baseUrl: baseUrl,
     });
 
@@ -57,8 +68,9 @@ class SasaPay {
 }
 
 const sasaPay = new SasaPay({
-  clientId: CONFIG.clientId,
-  clientSecret: CONFIG.clientSecret,
+  clientId: process.env.CLIENT_ID, // or pass directly
+  clientSecret: process.env.CLIENT_SECRET, // or pass directly
+  environment: process.env.ENVIRONMENT, // or pass directly
 });
 
 export default sasaPay;

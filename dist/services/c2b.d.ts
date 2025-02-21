@@ -1,5 +1,5 @@
 import AuthService from "./auth";
-interface C2BPaymentRequest {
+export interface C2BPaymentRequest {
     MerchantCode: string;
     NetworkCode: string;
     TransactionFee: number;
@@ -10,7 +10,7 @@ interface C2BPaymentRequest {
     TransactionDesc: string;
     AccountReference: string;
 }
-interface C2BPaymentResponse {
+export interface C2BPaymentResponse {
     status: boolean;
     detail: string;
     PaymentGateway: string;
