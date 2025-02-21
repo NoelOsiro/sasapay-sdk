@@ -1,6 +1,6 @@
 {
   "name": "sasapay-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A TypeScript SDK for interacting with Sasapay APIs.",
   "main": "dist/index.js",
   "scripts": {
