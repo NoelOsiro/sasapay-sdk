@@ -2,27 +2,47 @@ import axios from "axios";
 import AuthService from "./auth";
 
 export interface B2CPayoutRequest {
-  recipientPhoneNumber: string;
-  amount: number;
-  reason: string;
-  callbackUrl: string;
+  MerchantCode: string;
+  MerchantTransactionReference: string;
+  Amount: string;
+  Currency: string;
+  ReceiverNumber: string;
+  Channel: string;
+  Reason: string;
+  CallBackURL: string
 }
 
 export interface B2CPayoutResponse {
-  transactionId: string;
-  status: string;
-  message: string;
+  status: boolean,
+  detail: string,
+  B2CRequestID: string,
+  ConversationID: string,
+  OriginatorConversationID: string,
+  TransactionCharges: string,
+  ResponseCode: string,
+  ResponseDescription: string
 }
 
-interface B2CStatusResponse {
-  transactionId: string;
-  status: string;
-  amount: number;
-  recipientPhoneNumber: string;
-  reason: string;
-  message: string;
+export interface B2CStatusResponse {
+  MerchantCode: string,
+  DestinationChannel: string,
+  RecipientName: string,
+  RecipientAccountNumber: string,
+  ResultCode: string,
+  CheckoutRequestID: string,
+  MerchantRequestID: string,
+  ResultDesc: string,
+  SourceChannel: string,
+  SasaPayTransactionCode: string,
+  LinkedTransactionCode: string,
+  TransactionDate: string,
+  TransactionAmount: string,
+  TransactionCharge: string,
+  SasaPayTransactionID: string,
+  ThirdPartyTransactionCode: string,
+  MerchantTransactionReference: string,
+  MerchantAccountBalance: string
 }
-
 class B2CService {
   private baseUrl: string;
   private authService: AuthService;
@@ -35,10 +55,10 @@ class B2CService {
   /**
    * Make a B2C payout
    */
-  public async makePayout(request: B2CPayoutRequest): Promise<B2CPayoutResponse> {
+  public async makeB2CPayout(request: B2CPayoutRequest): Promise<B2CPayoutResponse> {
     const token = await this.authService.getToken();
     const response = await axios.post<B2CPayoutResponse>(
-      `${this.baseUrl}/b2c/payout`,
+      `${this.baseUrl}/payments/b2c/`,
       request,
       {
         headers: {

@@ -2,18 +2,28 @@ import axios from "axios";
 import AuthService from "./auth";
 
 export interface B2BPaymentRequest {
-  recipientBusinessId: string;
-  amount: number;
-  paymentReason: string;
-  callbackUrl: string;
+  MerchantCode: string;
+  MerchantTransactionReference: string;
+  Currency: string;
+  Amount: number;
+  ReceiverMerchantCode: string;
+  AccountReference: string;
+  ReceiverAccountType: string;
+  NetworkCode: string;
+  CallBackURL: string;
+  Reason: string;
 }
 
 export interface B2BPaymentResponse {
-  transactionId: string;
-  status: string;
-  message: string;
+  status: boolean;
+  detail: string;
+  B2BRequestID: string;
+  ConversationID: string;
+  OriginatorConversationID: string;
+  TransactionCharges: string;
+  ResponseCode: string;
+  ResponseDescription: string;
 }
-
 interface B2BStatusResponse {
   transactionId: string;
   status: string;
@@ -38,7 +48,7 @@ class B2BService {
   public async initiatePayment(request: B2BPaymentRequest): Promise<B2BPaymentResponse> {
     const token = await this.authService.getToken();
     const response = await axios.post<B2BPaymentResponse>(
-      `${this.baseUrl}/b2b/payment`,
+      `${this.baseUrl}/payments/b2b/`,
       request,
       {
         headers: {

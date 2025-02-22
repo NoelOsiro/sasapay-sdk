@@ -25,13 +25,17 @@ export interface C2BPaymentResponse {
   CustomerMessage: string;
 }
 
-interface PaymentStatusResponse {
-  transactionId: string;
-  status: string;
-  amount: number;
-  phoneNumber: string;
-  message: string;
+export interface C2BGetPaymentStatusRequest {
+  CheckoutRequestID: string;
+  MerchantCode: string;
+  VerificationCode: string;
 }
+
+export interface C2BGetPaymentStatusResponse {
+  status: boolean;
+  detail: string;
+}
+
 
 class C2BService {
   private baseUrl: string;
@@ -43,9 +47,9 @@ class C2BService {
   }
 
   /**
-   * Initiate a C2B payment
+   * Initiate a C2B payment Request
    */
-  public async initiatePayment(request: C2BPaymentRequest): Promise<C2BPaymentResponse> {
+  public async initiatePaymentRequest(request: C2BPaymentRequest): Promise<C2BPaymentResponse> {
     try {
       const token = await this.authService.getToken();
       console.log("Fetched Token:", token);
@@ -67,18 +71,19 @@ class C2BService {
       throw error; // Rethrow to let the caller handle it
     }
   }
-  
 
   /**
    * Check the status of a payment
    */
-  public async getPaymentStatus(transactionId: string): Promise<PaymentStatusResponse> {
+  public async getPaymentStatus(request: C2BGetPaymentStatusRequest): Promise<C2BGetPaymentStatusResponse> {
     const token = await this.authService.getToken();
-    const response = await axios.get<PaymentStatusResponse>(
-      `${this.baseUrl}/c2b/payment/status/${transactionId}`,
+    const response = await axios.post<C2BGetPaymentStatusResponse>(
+      `${this.baseUrl}/payments/process-payment/`,
+      request,
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       }
     );
